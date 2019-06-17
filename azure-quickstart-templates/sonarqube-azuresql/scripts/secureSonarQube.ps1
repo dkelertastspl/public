@@ -58,7 +58,7 @@ if($installationType -eq 'Secure')
             Set-WebConfigurationProperty -pspath $site -filter "$filterRoot/match" -name "serverVariable" -value "RESPONSE_LOCATION" 
             Set-WebConfigurationProperty -pspath $site -filter "$filterRoot/match" -name "pattern" -value "^http://[^/]+/(.*)" 
             Set-WebConfigurationProperty -pspath $site -filter "$filterRoot/action" -name "type" -value "Rewrite"
-            Set-WebConfigurationProperty -pspath $site -filter "$filterRoot/action" -name "value" -value "https://$serverName/{R:1}"
+            Set-WebConfigurationProperty -pspath $site -filter "$filterRoot/action" -name "value" -value "https://$serverName:8443/{R:1}"
             #Add preConditions
             Add-WebConfigurationProperty -pspath $site -filter '/system.webserver/rewrite/outboundRules/preConditions' -name "." -value @{name='IsRedirection'}
             Add-WebConfigurationProperty -pspath $site -filter '/system.webserver/rewrite/outboundRules/preConditions' -name "." -value @{name='ResponseIsHtml1'}
