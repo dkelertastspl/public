@@ -26,9 +26,9 @@ if($installationType -eq 'Secure')
         {
             Import-Module WebAdministration
             Set-Location IIS:\SslBindings
-            New-WebBinding -Name $websiteName -IP "*" -Port 443 -Protocol https
+            New-WebBinding -Name $websiteName -IP "*" -Port 8443 -Protocol https
             $c = New-SelfSignedCertificate -DnsName "$serverName" -CertStoreLocation "cert:\LocalMachine\My"
-            $c | New-Item 0.0.0.0!443
+            $c | New-Item 0.0.0.0!8443
             #Remove HTTP binding 
             Get-WebBinding -Port 8080 -Name $websiteName | Remove-WebBinding
             #Remove HTTP firewall
